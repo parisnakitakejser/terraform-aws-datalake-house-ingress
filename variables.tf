@@ -15,7 +15,7 @@ variable "msk_version" {
   default     = "3.5.1"
 }
 variable "msk_instance_type" {
-  description = "MSK Instance Type"
+  description = "MSK Instance Type, instance type typical take around 1-3 hours depending on how many brokers the cluster have."
   type        = string
   default     = "kafka.t3.small"
 }
