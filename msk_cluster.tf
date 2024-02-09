@@ -19,12 +19,19 @@ resource "aws_msk_cluster" "cluster" {
       aws_subnet.subnet_az2.id,
       aws_subnet.subnet_az3.id,
     ]
+    security_groups = [aws_security_group.sg.id]
+
+    connectivity_info {
+      public_access {
+        type = var.msk_public_access
+      }
+    }
+
     storage_info {
       ebs_storage_info {
         volume_size = var.msk_volume_size
       }
     }
-    security_groups = [aws_security_group.sg.id]
   }
 
   encryption_info {
@@ -39,6 +46,12 @@ resource "aws_msk_cluster" "cluster" {
       node_exporter {
         enabled_in_broker = true
       }
+    }
+  }
+
+  client_authentication {
+    sasl {
+      iam = true
     }
   }
 }

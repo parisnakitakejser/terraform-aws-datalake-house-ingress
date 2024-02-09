@@ -19,6 +19,11 @@ variable "msk_instance_type" {
   type        = string
   default     = "kafka.t3.small"
 }
+variable "msk_public_access" {
+  description = "MSK Public Access"
+  type        = string
+  default     = "DISABLED"
+}
 variable "msk_volume_size" {
   description = "MSK Volume size"
   type        = number
@@ -26,7 +31,7 @@ variable "msk_volume_size" {
 }
 
 variable "msk_brokers_pr_nodes" {
-  description = "MSK Broker nodes"
+  description = "MSK Broker nodes, remeber you can't scale down if you are scaling up and changes this variable after deployment required a Kafka partion rebalancing."
   type        = number
   default     = 1
 }
